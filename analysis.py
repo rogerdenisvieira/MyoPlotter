@@ -2,16 +2,17 @@ import matplotlib.pyplot as plt
 from numpy import sqrt, mean, square
 import pandas as pd
 
+root_path = 'datasets/'
 
 
 # loading datasets
-cvm1 = pd.read_csv('/home/roger.vieira/Downloads/laura/Roger/cvm1.txt', header = None, sep = '\t', decimal = ',')
-cvm2 = pd.read_csv('/home/roger.vieira/Downloads/laura/Roger/cvm2.txt', header = None, sep = '\t', decimal = ',')
-cvm3 = pd.read_csv('/home/roger.vieira/Downloads/laura/Roger/cvm3.txt', header = None, sep = '\t', decimal = ',')
+cvm1 = pd.read_csv(root_path + 'cvm1.txt', header = None, sep = '\t', decimal = ',')
+cvm2 = pd.read_csv(root_path + 'cvm2.txt', header = None, sep = '\t', decimal = ',')
+cvm3 = pd.read_csv(root_path + 'cvm3.txt', header = None, sep = '\t', decimal = ',')
 
-#rep1 = pd.read_csv('/home/roger.vieira/Downloads/laura/Roger/roger1.txt', header = None, sep = '\t', decimal = ',')
-#rep2 = pd.read_csv('/home/roger.vieira/Downloads/laura/Roger/roger2.txt', header = None, sep = '\t', decimal = ',')
-#rep3 = pd.read_csv('/home/roger.vieira/Downloads/laura/Roger/roger3.txt', header = None, sep = '\t', decimal = ',')
+rep1 = pd.read_csv(root_path + 'roger1.txt', header = None, sep = '\t', decimal = ',')
+rep2 = pd.read_csv(root_path + 'roger2.txt', header = None, sep = '\t', decimal = ',')
+rep3 = pd.read_csv(root_path + 'roger3.txt', header = None, sep = '\t', decimal = ',')
 
 
 # creating a RMS function
@@ -29,27 +30,75 @@ def process_four_channels(dataset):
         )
     )
 
+############################################################
+#                                                          #
+#                   PROCESSANDO AS CVM                     #
+#                                                          #
+############################################################
 
-fig = plt.figure()
+plt.suptitle('Sinais por CVM')
 
-ch4 = fig.add_subplot(411)
-ch5 = fig.add_subplot(412)
-ch6 = fig.add_subplot(413)
-ch7 = fig.add_subplot(414)
-
-ch4.plot(cvm1[0], cvm1[1], label = 'CH4')
-ch5.plot(cvm1[0], cvm1[2])
-ch6.plot(cvm1[0], cvm1[3])
-ch7.plot(cvm1[0], cvm1[4])
+############################ CVM1 ##########################
+for i in range(1,5):
+    print('Iteration {}'.format(i))
+    plt.subplot(3,4,i)
+    plt.plot(cvm1[0], cvm1[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
 
 
-'''
+############################ CVM2 ##########################
 
-process_four_channels(cvm1)
-process_four_channels(cvm2)
-process_four_channels(cvm3) '''
+for i in range(1,5):
+    plt.subplot(3,4,4+i)
+    plt.plot(cvm2[0], cvm2[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
+
+############################ CVM3 ##########################
+
+for i in range(1,5):
+    plt.subplot(3,4,8+i)
+    plt.plot(cvm3[0], cvm3[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
 
 plt.show()
 
+############################################################
+#                                                          #
+#               PROCESSANDO AS REPETIÇÕES                  #
+#                                                          #
+############################################################
+
+plt.suptitle('Sinais por Repetição')
+
+############################ REP1 ##########################
+for i in range(1,6):
+    print('Iteration {}'.format(i))
+    plt.subplot(3,5,i)
+    plt.plot(rep1[0], rep1[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
 
 
+
+############################ REP2 ##########################
+for i in range(1,6):
+    print('Iteration {}'.format(i))
+    plt.subplot(3,5,5+i)
+    plt.plot(rep2[0], rep2[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
+
+
+
+############################ REP3 ##########################
+for i in range(1,6):
+    print('Iteration {}'.format(i))
+    plt.subplot(3,5,10+i)
+    plt.plot(rep3[0], rep3[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
+
+plt.show()
+
+############################################################
+#                                                          #
+#                     COMPARAÇÕES RMS                      #
+#                                                          #
+############################################################
