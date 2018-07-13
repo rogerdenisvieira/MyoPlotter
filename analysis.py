@@ -14,6 +14,10 @@ rep1 = pd.read_csv(root_path + 'roger1.txt', header = None, sep = '\t', decimal 
 rep2 = pd.read_csv(root_path + 'roger2.txt', header = None, sep = '\t', decimal = ',')
 rep3 = pd.read_csv(root_path + 'roger3.txt', header = None, sep = '\t', decimal = ',')
 
+cvm_real1 = pd.read_csv(root_path + 'cvmreal1.txt', header = None, sep = '\t', decimal = ',')
+cvm_real2 = pd.read_csv(root_path + 'cvmreal2.txt', header = None, sep = '\t', decimal = ',')
+cvm_real3 = pd.read_csv(root_path + 'cvmreal3.txt', header = None, sep = '\t', decimal = ',')
+
 
 # creating a RMS function
 def calc_rms(serie):
@@ -93,6 +97,41 @@ for i in range(1,6):
     print('Iteration {}'.format(i))
     plt.subplot(3,5,10+i)
     plt.plot(rep3[0], rep3[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
+
+plt.show()
+
+############################################################
+#                                                          #
+#               PROCESSANDO O CVM COLCHONETE               #
+#                                                          #
+############################################################
+
+plt.suptitle('Sinais por CVM Colchonete')
+
+############################ CVM1 ##########################
+for i in range(2,6):
+    print('Iteration {}'.format(i))
+    plt.subplot(3,4,i-1)
+    plt.plot(cvm_real1[0], cvm_real1[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
+
+
+
+############################ CVM2 ##########################
+for i in range(2,6):
+    print('Iteration {}'.format(i))
+    plt.subplot(3,4,3+i)
+    plt.plot(cvm_real2[0], cvm_real2[i], color = 'black')
+    plt.title('CH{}'.format(i+3))
+
+
+
+############################ CVM3 ##########################
+for i in range(2,6):
+    print('Iteration {}'.format(i))
+    plt.subplot(3,4,7+i)
+    plt.plot(cvm_real3[0], cvm_real3[i], color = 'black')
     plt.title('CH{}'.format(i+3))
 
 plt.show()
