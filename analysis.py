@@ -4,19 +4,21 @@ import pandas as pd
 
 root_path = 'datasets/'
 
+############################################################
+#                                                          #
+#                     INTERNAL FUNCTIONS                   #
+#                                                          #
+############################################################
 
-# loading datasets
-cvm1 = pd.read_csv(root_path + 'cvm1.txt', header = None, sep = '\t', decimal = ',')
-cvm2 = pd.read_csv(root_path + 'cvm2.txt', header = None, sep = '\t', decimal = ',')
-cvm3 = pd.read_csv(root_path + 'cvm3.txt', header = None, sep = '\t', decimal = ',')
+def import_emg_data(root_path, filename):
+    print('Importing data from {}'.format(root_path + filename))
 
-rep1 = pd.read_csv(root_path + 'roger1.txt', header = None, sep = '\t', decimal = ',')
-rep2 = pd.read_csv(root_path + 'roger2.txt', header = None, sep = '\t', decimal = ',')
-rep3 = pd.read_csv(root_path + 'roger3.txt', header = None, sep = '\t', decimal = ',')
-
-cvm_real1 = pd.read_csv(root_path + 'cvmreal1.txt', header = None, sep = '\t', decimal = ',')
-cvm_real2 = pd.read_csv(root_path + 'cvmreal2.txt', header = None, sep = '\t', decimal = ',')
-cvm_real3 = pd.read_csv(root_path + 'cvmreal3.txt', header = None, sep = '\t', decimal = ',')
+    return pd.read_csv(
+        root_path + filename,
+        header = None,
+        sep = '\t',
+        decimal = ','
+        )
 
 
 # creating a RMS function
@@ -36,7 +38,28 @@ def process_four_channels(dataset):
 
 ############################################################
 #                                                          #
-#                   PROCESSANDO AS CVM                     #
+#                     LOADING RAW DATA                     #
+#                                                          #
+############################################################
+
+# loading cvm datasets
+cvm1 = import_emg_data(root_path, 'cvm1.txt')
+cvm2 = import_emg_data(root_path, 'cvm2.txt')
+cvm3 = import_emg_data(root_path, 'cvm3.txt')
+
+# loading series datasets
+rep1 = import_emg_data(root_path, 'roger1.txt')
+rep2 = import_emg_data(root_path, 'roger2.txt')
+rep3 = import_emg_data(root_path, 'roger3.txt')
+
+# loading real cvm datasets
+cvm_real1 = import_emg_data(root_path, 'cvmreal1.txt')
+cvm_real2 = import_emg_data(root_path, 'cvmreal2.txt')
+cvm_real3 = import_emg_data(root_path, 'cvmreal3.txt')
+
+############################################################
+#                                                          #
+#                       CVM PROCESSING                     #
 #                                                          #
 ############################################################
 
@@ -68,7 +91,7 @@ plt.show()
 
 ############################################################
 #                                                          #
-#               PROCESSANDO AS REPETIÇÕES                  #
+#                  REPETITIONS PROCESSING                  #
 #                                                          #
 ############################################################
 
@@ -103,7 +126,7 @@ plt.show()
 
 ############################################################
 #                                                          #
-#               PROCESSANDO O CVM COLCHONETE               #
+#                 PROCESSING LAST CVM SERIES               #
 #                                                          #
 ############################################################
 
@@ -138,6 +161,6 @@ plt.show()
 
 ############################################################
 #                                                          #
-#                     COMPARAÇÕES RMS                      #
+#                  COMPARISONS USING RMS                   #
 #                                                          #
 ############################################################
