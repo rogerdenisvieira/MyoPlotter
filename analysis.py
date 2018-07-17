@@ -62,7 +62,7 @@ cvm_real3 = import_emg_data(root_path, 'cvmreal3.txt')
 #                       CVM PROCESSING                     #
 #                                                          #
 ############################################################
-
+'''
 plt.suptitle('Sinais por CVM')
 
 ############################ CVM1 ##########################
@@ -87,7 +87,7 @@ for i in range(1,5):
     plt.plot(cvm3[0], cvm3[i], color = 'black')
     plt.title('CH{}'.format(i+3))
 
-plt.show()
+#plt.show()
 
 ############################################################
 #                                                          #
@@ -122,7 +122,7 @@ for i in range(1,6):
     plt.plot(rep3[0], rep3[i], color = 'black')
     plt.title('CH{}'.format(i+3))
 
-plt.show()
+#plt.show()
 
 ############################################################
 #                                                          #
@@ -157,10 +157,41 @@ for i in range(2,6):
     plt.plot(cvm_real3[0], cvm_real3[i], color = 'black')
     plt.title('CH{}'.format(i+3))
 
-plt.show()
-
+#plt.show()
+'''
 ############################################################
 #                                                          #
 #                  COMPARISONS USING RMS                   #
 #                                                          #
 ############################################################
+
+cvm1_rms = calc_rms(cvm1)
+cvm2_rms = calc_rms(cvm2)
+cvm3_rms = calc_rms(cvm3)
+
+x1 = ['CH4','CH5','CH6','CH7']
+x2 = ['CH4','CH5','CH6','CH7']
+x3 = ['CH4','CH5','CH6','CH7']
+
+plt.bar(x1, [cvm1_rms[1],cvm1_rms[2], cvm1_rms[3], cvm1_rms[4]], label = 'CVM1', color = 'blue')
+plt.bar(x2, [cvm2_rms[1],cvm2_rms[2], cvm2_rms[3], cvm2_rms[4]], label = 'CVM2', color = 'red')
+plt.bar(x3, [cvm3_rms[1],cvm3_rms[2], cvm3_rms[3], cvm3_rms[4]], label = 'CVM3', color = 'green')
+
+plt.title('RMS das CVMs por Canal')
+plt.xlabel('Canais')
+plt.ylabel('RMS')
+plt.grid()
+plt.legend()
+plt.show()
+
+
+
+rep1_rms = calc_rms(rep1)
+rep2_rms = calc_rms(rep2)
+rep3_rms = calc_rms(rep3)
+
+cvm_real1_rms = calc_rms(cvm_real1)
+cvm_real2_rms = calc_rms(cvm_real2)
+cvm_real3_rms = calc_rms(cvm_real3)
+
+
